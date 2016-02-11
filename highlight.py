@@ -3,8 +3,8 @@ import pdfquery
 pdf = pdfquery.PDFQuery("test.pdf")
 
 pdf.load()
-pageNum = pdf.doc.catalog['Pages'].resolve()['Count'] #get number of pages
-print (pageNum)
+#pageNum = pdf.doc.catalog['Pages'].resolve()['Count'] #get number of pages
+# print (pageNum)
 
 label = pdf.pq('LTTextLineHorizontal:contains("is")')
 
@@ -15,11 +15,19 @@ y1 = float(label.attr('y1'))
 
 box = [x0, y0, x1, y1]
 print(box)
-locate = pdf.pq('LTTextLineHorizontal:in_bbox("72.0, 548.456, 372.81, 571.256")').text() 
+locate = pdf.pq('LTPage[page_index = 1]:in_bbox("90.0, 597.456, 533.542, 613.428")').text() 
 print(locate)
 
 
+# cells = pdf.extract ([
+# 	('with_parent','LTPage[pageid=\'1\']'),
+#     ('cells', 'LTTextLineHorizontal:contains("is")')
 
+# 	]
+# )
+
+# #[cell.text.encode('utf-8').strip() for cell in cells['cells']]
+# print(cells)
 # label2 = pdf.pq('LTTextLineHorizontal:contains("ssme techniques can be")')
 # x00 = float(label.attr('x0'))
 # y00 = float(label.attr('y0'))
